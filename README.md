@@ -1,31 +1,33 @@
 # android-root-skillkit
 
-面向 AI 助手的 Android Root / 玩机安全知识与审查 Skillkit。
+**English** | [中文](README.zh-CN.md)
 
-它将三个相关领域合并为一个带路由的 Skill：
+Android root / modding security knowledge and review skillkit for AI assistants.
 
-1. **Root 基础、选型与隐藏**：Magisk、KernelSU、SukiSU-Ultra、APatch、FolkPatch、KernelPatch/KPM、LKM/built-in/GKI、SUSFS、Zygisk、DirtySepolicy、Attestation 等；
-2. **格机威胁与防御**：资产中心防护、最终 I/O 落点、会话与因果归因、维护窗口、证据和恢复边界；
-3. **Root 玩家付费软件加固**：服务器签名 Grant、严格设备绑定、资产加密、运行状态拟合、壳/VMP，以及仅在确有 EL1 需求时采用的 KPM 方案。
+It merges three related domains into a single routed Skill:
 
-## 重要范围说明
+1. **Root fundamentals, selection and hiding**: Magisk, KernelSU, SukiSU-Ultra, APatch, FolkPatch, KernelPatch/KPM, LKM/built-in/GKI, SUSFS, Zygisk, DirtySepolicy, Attestation, and more;
+2. **Bricker threats and defense**: asset-centric protection, final I/O landing point, session and causal attribution, maintenance windows, evidence and recovery boundaries;
+3. **Hardening for paid root-enthusiast software**: server-signed grants, strict device binding, asset encryption, runtime state fitting, packers/VMP, and KPM-based approaches used only when there is a genuine EL1 requirement.
 
-商业加固部分只适用于：
+## Important Scope Note
 
-> 从产品定义开始就专门面向 Root/玩机用户的商业付费软件。
+The commercial hardening part applies only to:
 
-它不适用于普通消费者 App、银行/支付 App，也不适用于仅希望兼容少量 Root 用户的一般应用。
+> Commercial paid software that was designed from the start for root/modding users.
 
-该目标群体被假定为理解刷机、换内核、安装模块和系统升级可能改变设备身份，并接受：
+It does not apply to ordinary consumer apps, banking/payment apps, or general apps that merely want to tolerate a few rooted users.
 
-- 严格设备信息绑定；
-- 指纹漂移后 fail-closed；
-- 登录官网手动解绑；
-- 解绑冷却期、频率限制和必要的人工复核。
+This target audience is assumed to understand that flashing, swapping kernels, installing modules, and system upgrades can change device identity, and to accept:
 
-因此，由用户主动玩机行为触发的假阳性是明确接受的产品安全取舍，而非自动视为设计缺陷。
+- strict device information binding;
+- fail-closed behavior after fingerprint drift;
+- manual unbinding through a web portal;
+- unbinding cooldowns, rate limits, and manual review where necessary.
 
-## 目录
+False positives triggered by a user's own modding activity are therefore an explicitly accepted product security trade-off, not automatically treated as a design defect.
+
+## Contents
 
 ```text
 android-root-skillkit/
@@ -42,34 +44,34 @@ android-root-skillkit/
     └── solution-outline.md
 ```
 
-构建产物位于：
+The build artifact lives at:
 
 ```text
 dist/android-root-skillkit.skill
 ```
 
-`.skill` 是包含 `android-root-skillkit/` 根目录的 ZIP 文件。
+`.skill` is a ZIP file containing the `android-root-skillkit/` root directory.
 
-## 使用
+## Usage
 
-将 `dist/android-root-skillkit.skill` 导入支持 Skill 的 AI 客户端，或直接把 `android-root-skillkit/` 目录放入客户端的 Skills 目录。
+Import `dist/android-root-skillkit.skill` into an AI client that supports Skills, or drop the `android-root-skillkit/` directory straight into the client's Skills directory.
 
-涉及版本、功能是否内置、检测面和模块兼容性的回答，必须重新核对目标版本的上游源码、PR、Release 或作者渠道。`SOURCES.md` 只记录本次正式审查的快照，不是永久事实。
+Answers about versions, whether a feature is built in, detection surface, and module compatibility must re-check the upstream source, PRs, releases, or the author's channels for the target version. `SOURCES.md` only records a snapshot of this formal review; it is not permanent fact.
 
-## 安全边界
+## Security Boundaries
 
-本项目提供防御、分析、架构评审和安全设计知识，不提供针对真实设备的破坏代码或可执行分区清零流程，也不承诺：
+This project provides defensive, analytical, architectural-review, and security-design knowledge. It does not provide destructive code targeting real devices or executable partition-erasure procedures, and it makes no promise of:
 
-- 绝对不可检测；
-- 绝对不可破解；
-- 绝对无法格机；
-- 能抵抗任意恶意 KPM、任意内核执行、EL2/TEE/RPMB、存储固件或物理攻击。
+- absolute undetectability;
+- absolute uncrackability;
+- absolute immunity to bricking;
+- resistance to arbitrary malicious KPMs, arbitrary kernel execution, EL2/TEE/RPMB, storage firmware, or physical attacks.
 
-防格实验只应使用 disposable loop/虚拟块设备。
+Anti-bricking experiments should only use disposable loop/virtual block devices.
 
-## 审查说明
+## Review Notes
 
-内容曾由 AI 辅助整理，但在 2026-08-08 公开发布前，对主要版本敏感结论进行了上游源码复核。审查 commit 和已知边界见 [`SOURCES.md`](SOURCES.md) 与 [`CHANGELOG.md`](CHANGELOG.md)。
+The content was partly compiled with AI assistance, but sensitive conclusions about major versions were verified against upstream source before the 2026-08-08 public release. See [`SOURCES.md`](SOURCES.md) and [`CHANGELOG.md`](CHANGELOG.md) for review commits and known boundaries.
 
 ## License
 
